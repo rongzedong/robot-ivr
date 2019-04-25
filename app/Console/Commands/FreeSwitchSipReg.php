@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Services\SmartIvr\Console\FsCli;
 use App\Services\SmartIvr\Console\SipGateway;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use \RuntimeException;
 
 class FreeSwitchSipReg extends Command
@@ -85,18 +86,22 @@ class FreeSwitchSipReg extends Command
             if ($this->checkReged($gateway)) {
                 $bar->finish();
                 $this->info('结果：已注册');
+
             } else {
                 $bar->finish();
                 $this->info('结果：未注册');
             }
         } catch (\Exception $e) {
             $this->error('结果：注册SIP网关失败,原因:' . $e->getMessage());
+            Log::error('结果：注册SIP网关失败,原因:' . $e->getMessage(), [
+                'gateway' => $gateway,
+            ]);
         }
     }
 
     private function mkdir($path)
     {
-        if (!file_exists($path) ? true : mkdir($path, 0777, true)) {
+        if (is_dir($path) ? false : mkdir($path, 0777, true)) {
             $error_msg = "文件夹[ {$path} ]不存在";
             $this->error($error_msg);
             throw new RuntimeException($error_msg);

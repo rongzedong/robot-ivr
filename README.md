@@ -19,3 +19,6 @@ If you discover a security vulnerability within Lumen, please send an e-mail to 
 ## License
 
 The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+[![pipeline status](http://gitlab.xunbaoo.com/robot/ivr/badges/master/pipeline.svg)](http://gitlab.xunbaoo.com/robot/ivr/commits/master)
+[![coverage report](http://gitlab.xunbaoo.com/robot/ivr/badges/master/coverage.svg)](http://gitlab.xunbaoo.com/robot/ivr/commits/master)

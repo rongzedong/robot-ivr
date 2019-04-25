@@ -16,7 +16,7 @@ class FsCli
     /**
      * @var array
      */
-    public $output;
+    public $output = [];
 
     /**@var string */
     private $gateway = 'all';
@@ -70,7 +70,12 @@ class FsCli
     {
         exec($cmd, $output, $return_var);
 
-        $this->output = $output;
+        foreach ($output as $value) {
+            $item = preg_split('/\s+/', $value);
+            if (is_array($item)) {
+                $this->output = array_merge($this->output, $item);
+            }
+        }
 
         if ($return_var !== 0) {
             throw new RuntimeException($err_message, $return_var);
