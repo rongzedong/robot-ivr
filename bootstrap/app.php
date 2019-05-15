@@ -85,6 +85,8 @@ $app->register(VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServic
 
 $app->configure('amqp');
 $app->register(Bschmitt\Amqp\LumenServiceProvider::class);
+
+$app->register(XsKit\LaravelRabbitMQ\RabbitMQServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
