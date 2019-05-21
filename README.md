@@ -9,16 +9,16 @@
     ```bash
     $ git clone git@github.com:xskit/robot-ivr.git
     ```
-    
+
 1. 安装依赖包
     ```bash
-$ composer install
+    $ composer install
     ```
-    
-1. 系统注册到  `服务端`
 
+1. 系统注册到  `服务端`
     ```bash
     $ php artisan ivr:signin
     ```
 
-    
+​    
+
