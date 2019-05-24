@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\SmartIvr\Console\FsCli;
-use App\Services\SmartIvr\Console\SipGateway;
+use App\Services\Freeswitch\Console\FsCli;
+use App\Services\Freeswitch\Console\SipGateway;
 use Illuminate\Console\Command;
 
 class FreeSwitchSipDel extends Command

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\SmartIvr\Console\FsCli;
-use App\Services\SmartIvr\Console\SipGateway;
+use App\Services\Freeswitch\Console\FsCli;
+use App\Services\Freeswitch\Console\SipGateway;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use \RuntimeException;
@@ -19,7 +19,8 @@ class FreeSwitchSipReg extends Command
                             {gateway : 网关名}
                             {realm : 地址} 
                             {username : 用户名} 
-                            {password? : 密码}';
+                            {password? : 密码}
+                            {from-domain? : 域名}';
 
     /**
      * The console command description.
@@ -55,6 +56,8 @@ class FreeSwitchSipReg extends Command
         $username = $this->argument('username');
         $password = $this->argument('password') ?? '';
 
+        $from_domain = $this->argument('from-domain') ?? '';
+
         $this->info('开始注册 FreeSwitch SIP 网关...');
         $bar = $this->output->createProgressBar(4);
 
@@ -63,7 +66,7 @@ class FreeSwitchSipReg extends Command
             //生成配置文件
             $this->mkdir($dir);
             $file = $dir . $gateway . '.xml';
-            $this->mkfile($file, $gateway, $this->argument('realm'), $username, $password);
+            $this->mkfile($file, $gateway, $this->argument('realm'), $username, $password, $from_domain);
 
             $bar->advance();
             $this->info("文件 [ $file ] 配置成功");
@@ -108,9 +111,9 @@ class FreeSwitchSipReg extends Command
         }
     }
 
-    private function mkfile($file, $gateway, $reaml, $username, $password)
+    private function mkfile($file, $gateway, $reaml, $username, $password, $from_domain)
     {
-        if (!SipGateway::make($file, $gateway, $reaml, $username, $password)) {
+        if (!SipGateway::make($file, $gateway, $reaml, $username, $password, $from_domain)) {
             $error_msg = "文件 [ $file ] 配置失败";
             $this->error($error_msg);
             throw new RuntimeException($error_msg);

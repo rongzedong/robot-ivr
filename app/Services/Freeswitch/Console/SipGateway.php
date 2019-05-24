@@ -6,7 +6,7 @@
  * Time: 15:27
  */
 
-namespace App\Services\SmartIvr\Console;
+namespace App\Services\Freeswitch\Console;
 
 
 class SipGateway
@@ -18,9 +18,10 @@ class SipGateway
      * @param $realm
      * @param $username
      * @param string $password
+     * @param string $form_domain
      * @return bool
      */
-    public static function make($file, $gateway, $realm, $username, $password = '')
+    public static function make($file, $gateway, $realm, $username, $password = '', $form_domain = '')
     {
         $content = <<<eof
 <include>
@@ -31,6 +32,7 @@ class SipGateway
   <param name="password" value="$password"/>
   <param name="extension" value="$username"/>
   <param name="expire-seconds" value="60"/>
+    <param name="from-domain" value="$form_domain"/>
   <param name="register" value="true"/>
   <param name="caller-id-in-from" value="true"/>
   <param name="extension-in-contact" value="true"/>

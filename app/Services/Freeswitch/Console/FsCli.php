@@ -6,7 +6,7 @@
  * Time: 14:42
  */
 
-namespace App\Services\SmartIvr\Console;
+namespace App\Services\Freeswitch\Console;
 
 
 use RuntimeException;
