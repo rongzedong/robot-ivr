@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "775fea87ec9c4270156026facd9b68b0",
+    "content-hash": "9b318b0d56471bc4ece24b31637922a9",
     "packages": [
         {
             "name": "babenkoivan/scout-elasticsearch-driver",
@@ -4329,68 +4329,6 @@
                 "environment"
             ],
             "time": "2019-03-06T09:39:45+00:00"
-        },
-        {
-            "name": "xskit/laravel-rabbitmq",
-            "version": "2.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/xskit/laravel-rabbitmq.git",
-                "reference": "c7a27bf318e16ce59afc6c1add5617472bc474df"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/xskit/laravel-rabbitmq/zipball/c7a27bf318e16ce59afc6c1add5617472bc474df",
-                "reference": "c7a27bf318e16ce59afc6c1add5617472bc474df",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "enqueue/amqp-lib": "0.9.*",
-                "ext-json": "*",
-                "illuminate/database": "5.7.*|5.8.*",
-                "illuminate/queue": "5.7.*|5.8.*",
-                "illuminate/support": "5.7.*|5.8.*",
-                "php": "^7.1.3",
-                "queue-interop/amqp-interop": "0.8.*"
-            },
-            "require-dev": {
-                "laravel/horizon": "^3.0",
-                "phpunit/phpunit": "7.*|6.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "XsKit\\LaravelRabbitMQ\\RabbitMQServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "XsKit\\LaravelRabbitMQ\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "兴顺",
-                    "email": "250915790@qq.com"
-                }
-            ],
-            "description": "采用laravel queue的方式监听 RabbitMQ 消息，完成 分布式 服务的通信功能。",
-            "time": "2019-05-24T05:56:50+00:00"
         },
         {
             "name": "xskit/passport-client",

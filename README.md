@@ -17,7 +17,7 @@
 
 1. 系统注册到  `服务端`
     ```bash
-    $ php artisan ivr:signin
+    $ php artisan ivr:signup
     ```
 
 ​    
