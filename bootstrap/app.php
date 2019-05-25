@@ -48,6 +48,19 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
+| Register Configure
+|--------------------------------------------------------------------------
+|
+| Next, we will register the middleware with the application. These can
+| be global middleware that run before and after each request into a
+| route or middleware that'll be assigned to some specific routes.
+|
+*/
+
+$app->configure('passport_client');
+
+/*
+|--------------------------------------------------------------------------
 | Register Middleware
 |--------------------------------------------------------------------------
 |
@@ -81,11 +94,8 @@ $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
-$app->register(VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class);
 
-$app->configure('amqp');
-$app->register(Bschmitt\Amqp\LumenServiceProvider::class);
-
+$app->register(XsKit\PassportClient\PassportClientServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
