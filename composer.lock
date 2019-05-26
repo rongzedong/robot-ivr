@@ -4200,12 +4200,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xskit/passport-client.git",
-                "reference": "1eab6e97775976b82fae27f844df03fc8aa53313"
+                "reference": "ca13ea6e20f4661ff104fd049824a0c3dc93f07b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xskit/passport-client/zipball/1eab6e97775976b82fae27f844df03fc8aa53313",
-                "reference": "1eab6e97775976b82fae27f844df03fc8aa53313",
+                "url": "https://api.github.com/repos/xskit/passport-client/zipball/ca13ea6e20f4661ff104fd049824a0c3dc93f07b",
+                "reference": "ca13ea6e20f4661ff104fd049824a0c3dc93f07b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4263,7 +4263,7 @@
                 "passport",
                 "sdk"
             ],
-            "time": "2019-05-25T16:21:55+00:00"
+            "time": "2019-05-25T17:24:02+00:00"
         }
     ],
     "packages-dev": [

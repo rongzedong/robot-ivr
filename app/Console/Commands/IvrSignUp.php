@@ -11,6 +11,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use XsKit\PassportClient\Facades\PassportClient;
 
 class IvrSignUp extends Command
@@ -24,13 +25,18 @@ class IvrSignUp extends Command
     {
         $accessToken = $this->getAccessToken();
 
+        if (empty($accessToken)) {
+            $this->error('获取授权失败');
+            return;
+        }
+
         $name = $this->ask('请输入你的名称');
 
         $description = $this->ask('请输入一段描述文字');
 
         $total_concurrency_quota = $this->ask('请输入 你的 IVR 呼叫限制的最大并发数');
 
-        $app_host = $this->ask('请输入 IVR主机(host)');
+        $app_host = $this->getAppHost();
 
         $response = PassportClient::request()
             ->token($accessToken)
@@ -42,8 +48,9 @@ class IvrSignUp extends Command
                 'app_host' => $app_host,
             ])->post();
 
-        if ($response->isErr()) {
+        if ($response->isErr() || empty(Arr::get($response, 'app_key'))) {
             $this->error('获取信息失败，请重试多试几次 或 联系服务供应商解决。');
+            return;
         }
 
         $this->comment('注册成功。');
@@ -52,10 +59,10 @@ class IvrSignUp extends Command
         $this->info('描述：' . Arr::get($response, 'description'));
         $this->info('IVR主机(Host):' . Arr::get($response, 'app_host'));
         $this->info('最大并发限制数:' . Arr::get($response, 'total_concurrency_quota'));
-        $this->info('APP_KEY:' . Arr::get($response, 'app_key'));
-        $this->info('APP_SECRET:' . Arr::get($response, 'app_secret'));
+        $this->info('IVR_KEY:' . Arr::get($response, 'app_key'));
+        $this->info('IVR_SECRET:' . Arr::get($response, 'app_secret'));
 
-        $this->line('把获取到的 APP_KEY 和 APP_SECRET 信息配置到 .env 对应的位置上。');
+        $this->line('把获取到的 IVR_KEY 和 IVR_SECRET 信息配置到 .env 对应的位置上。');
 
 
     }
@@ -77,5 +84,18 @@ class IvrSignUp extends Command
         }
 
         return Arr::get($token, 'access_token');
+    }
+
+    private function getAppHost()
+    {
+        $app_host = $this->ask('请输入 IVR主机(host)，请以 http:// 或 https:// 开头');
+
+        if (!Str::startsWith($app_host, ['http://', 'https://'])) {
+            $this->error('IVR主机(host) 格式错误。');
+            $app_host = $this->getAppHost();
+        }
+
+        return $app_host;
+
     }
 }
