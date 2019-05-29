@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c0f83c4e5efe70253b6824b3d1228eb",
+    "content-hash": "c140d68ad308aa9a737dad5574720747",
     "packages": [
         {
             "name": "babenkoivan/scout-elasticsearch-driver",
@@ -4196,16 +4196,16 @@
         },
         {
             "name": "xskit/passport-client",
-            "version": "1.0.5",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xskit/passport-client.git",
-                "reference": "ca13ea6e20f4661ff104fd049824a0c3dc93f07b"
+                "reference": "b6c4b35708044e68481e4c6403883b107d58b410"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xskit/passport-client/zipball/ca13ea6e20f4661ff104fd049824a0c3dc93f07b",
-                "reference": "ca13ea6e20f4661ff104fd049824a0c3dc93f07b",
+                "url": "https://api.github.com/repos/xskit/passport-client/zipball/b6c4b35708044e68481e4c6403883b107d58b410",
+                "reference": "b6c4b35708044e68481e4c6403883b107d58b410",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4263,7 +4263,7 @@
                 "passport",
                 "sdk"
             ],
-            "time": "2019-05-25T17:24:02+00:00"
+            "time": "2019-05-28T05:59:30+00:00"
         }
     ],
     "packages-dev": [

@@ -11,7 +11,7 @@
         "illuminate/redis": "^5.8",
         "laravel/lumen-framework": "5.8.*",
         "vlucas/phpdotenv": "^3.3",
-        "xskit/passport-client": "^1.0"
+        "xskit/passport-client": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",
