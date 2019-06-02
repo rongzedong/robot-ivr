@@ -21,13 +21,12 @@ class CheckForAppSecret
         $app_id = $this->getRequestAppId($request);
 
         $date = $this->getRequestDate($request);
-        abort_if(empty($date), 422, '缺少参数：date');
+        empty($date) && abort(422, '缺少参数：date');
 
         $sign = $this->getRequestSign($request);
-        abort_if(empty($sign), 422, '缺少参数：sign');
+        empty($sign) && abort(422, '缺少参数：sign');
 
-        abort_if(!hash_equals($this->generateSign($date, $app_id, config('app_secret')), $sign),
-            422, '验签失败');
+        !hash_equals($this->generateSign($date, $app_id, config('app_secret')), $sign) && abort(422, '验签失败');
 
         return $next($request);
     }
