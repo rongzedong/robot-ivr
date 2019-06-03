@@ -108,4 +108,14 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    /*
+     |------------------------------------
+     | 别名
+     |------------------------------------
+     */
+    'aliases' => [
+        'Schema' => \Illuminate\Support\Facades\Schema::class,
+    ],
+
 ];
