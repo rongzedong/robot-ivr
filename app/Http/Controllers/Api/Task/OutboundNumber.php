@@ -18,4 +18,9 @@ class OutboundNumber extends Controller
     {
 
     }
+
+    public function destroy($id)
+    {
+
+    }
 }
