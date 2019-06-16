@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Xingshun <250915790@qq.com>
- * Date: 2019/6/2
- * Time: 16:04
- */
+
+/** @var \Illuminate\Support\Facades\Route $router */
+
+$router->post('task/outbound', 'Api\Task\Outbound@store');
+
+$router->put('task/outbound/{id}', 'Api\Task\Outbound@update');
+
+$router->delete('task/outbound/{id}', 'Api\Task\Outbound@destroy');
