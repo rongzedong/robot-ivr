@@ -14,10 +14,19 @@
     ```bash
     $ composer install
     ```
+1. 设置环境配置
+    ```bash
+    cp .env.example .env
+    ```
 
 1. 系统注册到  `服务端`
     ```bash
     $ php artisan ivr:signup
+    ```
+    拿到注册信息后，配置到 `.env `对应的配置项,例如：
+    ```
+    IVR_KEY=qL3S06naeik7****
+    IVR_SECRET=3al1xUk8AOaZC8twvhZLmF3Wt2BLcKdijtaost*****
     ```
 
 ​    
