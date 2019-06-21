@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
  * @package App\Models\AutoDialer
  * @author Xingshun <250915790@qq.com>
  */
-class Task extends Model
+class OutboundTask extends Model
 {
     protected $table = 'autodialer_task';
 

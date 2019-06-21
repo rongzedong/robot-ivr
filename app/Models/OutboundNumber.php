@@ -58,13 +58,13 @@ class OutboundNumber extends Model
 
     /**
      * 高阶消息传递 重新呼叫
-     * @param Task|null $task
+     * @param OutboundTask|null $task
      */
-    public function resetCall(Task $task = null)
+    public function resetCall(OutboundTask $task = null)
     {
         if (is_null($task)) {
             //为了优化一个任务批量重呼时，重复获取任务信息
-            $task = Task::query()->findOrFail(self::getTableIdentification());
+            $task = OutboundTask::query()->findOrFail(self::getTableIdentification());
         }
 
         //更新当前号码状态
