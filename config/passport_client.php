@@ -3,7 +3,7 @@ return [
     'default' => 'service',
 
     'service' => [
-        'base_uri' => env('PASSPORT_CLIENT_BASE_URI', 'http://boss.xunbaoo.com'),
+        'base_uri' => env('PASSPORT_CLIENT_BASE_URI', 'http://boss.aiicall.com'),
 
         'query' => env('PASSPORT_CLIENT_QUERY', '/oauth/token'),
 
