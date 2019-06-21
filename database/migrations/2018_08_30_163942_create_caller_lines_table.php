@@ -32,7 +32,7 @@ class CreateCallerLinesTable extends Migration
             $table->string('proxy', 100)->nullable()->comment('代理地址');
             $table->string('username', 100)->nullable()->comment('网关注册名');
             $table->string('password', 100)->nullable()->comment('密码');
-            $table->string('from_domain', 100)->nullable();
+            $table->string('from_domain', 100)->nullable()->comment('域名');
 
             $table->dateTime('deadline_at')->nullable()->comment('截止期限');
 
