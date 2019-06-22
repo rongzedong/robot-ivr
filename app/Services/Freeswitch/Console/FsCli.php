@@ -8,10 +8,9 @@
 
 namespace App\Services\Freeswitch\Console;
 
-
 use RuntimeException;
 
-class FsCli
+class FsCli extends ConsoleDoShell
 {
     /**
      * @var array
@@ -68,20 +67,24 @@ class FsCli
 
     private function afterHandle($cmd, $err_message = '')
     {
-        exec($cmd, $output, $return_var);
+        $output = [];
+        $return_var = -1;
 
-        foreach ($output as $value) {
+        if ($result = $this->doShell($cmd)) {
+            list('stdout' => $output, 'stderr' => $err_message, 'return_var' => $return_var) = $result;
+        }
+
+        foreach ((array)$output as $value) {
             $item = preg_split('/\s+/', $value);
             if (is_array($item)) {
                 $this->output = array_merge($this->output, $item);
             }
         }
 
-        if ($return_var !== 0) {
+        if ($return_var === -1) {
             throw new RuntimeException($err_message, $return_var);
         }
         return $this;
     }
-
 
 }
