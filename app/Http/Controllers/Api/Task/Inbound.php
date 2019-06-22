@@ -13,11 +13,11 @@ use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\Request;
 
 /**
- * 外呼任务管理
+ * 呼入任务管理
  * Class Outbound
  * @package App\Http\Controllers\Api\Task
  */
-class Outbound extends Controller
+class Inbound extends Controller
 {
 
     /**

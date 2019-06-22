@@ -9,9 +9,14 @@
 namespace App\Http\Controllers\Api\Task;
 
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * 外呼号码管理
+ * Class OutboundNumber
+ * @package App\Http\Controllers\Api\Task
+ */
 class OutboundNumber extends Controller
 {
     public function store(Request $request)

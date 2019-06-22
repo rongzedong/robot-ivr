@@ -6,6 +6,7 @@ use App\Jobs\Job;
 use App\Services\Freeswitch\Console\FsCli;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class CallerLineGateWayRegisterJob extends Job
 {
@@ -30,16 +31,16 @@ class CallerLineGateWayRegisterJob extends Job
             $i++;
         } while (!$is_success && $i < 10);
 
-        //反馈注册结果
-        CallerLineGateWayStatusJob::dispatch(
-            Arr::get($this->data, 'id'),
-            $result === 0 && false !== $is_success
-        );
+        //记录注册结果
+        Log::info('FreeSwitch Sip Gateway register:', [
+            'gateway' => $gateway,
+            'result' => $result === 0 && false !== $is_success
+        ]);
 
     }
 
     public function failed($exception = null)
     {
-        info('SIP网关注册失败 ' . optional($exception)->getMessage());
+        info('FreeSwitch Sip Gateway register failed,' . optional($exception)->getMessage());
     }
 }

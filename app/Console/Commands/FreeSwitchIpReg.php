@@ -18,7 +18,8 @@ class FreeSwitchIpReg extends Command
     protected $signature = 'fs:ip_reg 
                             {gateway : 网关名}
                             {realm : 地址} 
-                            {proxy? : 代理地址}';
+                            {proxy? : 代理地址}
+                            {from-domain? : 域名}';
 
     /**
      * The console command description.
@@ -54,6 +55,7 @@ class FreeSwitchIpReg extends Command
         $realm = $this->argument('realm');
         $proxy = $this->argument('proxy') ?: $realm;
 
+        $from_domain = $this->argument('from-domain') ?? '';
 
         $this->info('开始注册 FreeSwitch SIP 网关...');
         $bar = $this->output->createProgressBar(4);
@@ -62,7 +64,7 @@ class FreeSwitchIpReg extends Command
             $dir = config('common.freeswitch_sip_dir');
             //生成配置文件
             $file = $this->mkdir($dir) . $gateway . '.xml';
-            $this->mkfile($file, $gateway, $realm, $proxy);
+            $this->mkfile($file, $gateway, $realm, $proxy, $from_domain);
 
             $bar->advance();
             $this->info("文件 [ $file ] 配置成功");
@@ -115,9 +117,9 @@ class FreeSwitchIpReg extends Command
         return rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
     }
 
-    private function mkfile($file, $gateway, $reaml, $proxy)
+    private function mkfile($file, $gateway, $realm, $proxy, $from_domain)
     {
-        if (!IpGateway::make($file, $gateway, $reaml, $proxy)) {
+        if (!IpGateway::make($file, $gateway, $realm, $proxy, $from_domain)) {
             $error_msg = "文件 [ $file ] 配置失败";
             $this->error($error_msg);
             throw new RuntimeException($error_msg);

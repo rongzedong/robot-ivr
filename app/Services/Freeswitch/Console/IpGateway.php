@@ -15,20 +15,19 @@ class IpGateway
      * 生成 sip 配置文件
      * @param $file
      * @param $gateway
-     * @param $realm
-     * @param $proxy
+     * @param string $realm
+     * @param string $proxy
+     * @param string $from_domain
      * @return bool
      */
-    public static function make($file, $gateway, $realm = '', $proxy = '')
+    public static function make($file, $gateway, $realm = '', $proxy = '', $from_domain = '')
     {
         $content = <<<eof
 <include>
     <gateway name="$gateway">
 	  <param name="proxy" value="$proxy"/>
 	  <param name="realm" value="$realm"/>
-	  <param name="from-user" value=""/>
-	  <param name="from-domain" value=""/>
-	  <param name="password" value=""/>
+	  <param name="from-domain" value="$from_domain"/>
 	  <param name="register" value="false"/>
 	  <param name="rtp-autofix-timing" value="false"/>
 	  <param name="caller-id-in-from" value="true"/>

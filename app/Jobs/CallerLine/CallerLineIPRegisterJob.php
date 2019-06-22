@@ -6,6 +6,7 @@ use App\Jobs\Job;
 use App\Services\Freeswitch\Console\FsCli;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 
 class CallerLineIPRegisterJob extends Job
@@ -17,11 +18,9 @@ class CallerLineIPRegisterJob extends Job
 
 
         $gateway = Arr::get($this->data, 'dial_str.gateway');
-        $result = Artisan::call('fs:sip_reg', [
+        $result = Artisan::call('fs:ip_reg', [
             'gateway' => $gateway,
             'realm' => Arr::get($this->data, 'dial_str.realm'),
-            'username' => Arr::get($this->data, 'dial_str.username'),
-            'password' => Arr::get($this->data, 'dial_str.password'),
             'from-domain' => Arr::get($this->data, 'dial_str.from_domain'),
         ]);
         $i = 1;
@@ -31,7 +30,11 @@ class CallerLineIPRegisterJob extends Job
             $i++;
         } while (!$is_success && $i < 10);
 
-        //反馈注册结果
+        //记录注册结果
+        Log::info('FreeSwitch Sip Gateway register:', [
+            'gateway' => $gateway,
+            'result' => $result === 0 && false !== $is_success
+        ]);
 
     }
 
