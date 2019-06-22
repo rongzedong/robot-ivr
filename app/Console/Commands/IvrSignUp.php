@@ -48,19 +48,19 @@ class IvrSignUp extends Command
                 'app_host' => $app_host,
             ])->post();
 
-        if ($response->isErr() || empty(Arr::get($response, 'app_key'))) {
+        if ($response->isErr() || empty($response['app_key'])) {
             $this->error('获取信息失败，请重试多试几次 或 联系服务供应商解决。');
             return;
         }
 
         $this->comment('注册成功。');
 
-        $this->info('名称：' . Arr::get($response, 'name'));
-        $this->info('描述：' . Arr::get($response, 'description'));
-        $this->info('IVR主机(Host):' . Arr::get($response, 'app_host'));
-        $this->info('最大并发限制数:' . Arr::get($response, 'total_concurrency_quota'));
-        $this->info('IVR_KEY:' . Arr::get($response, 'app_key'));
-        $this->info('IVR_SECRET:' . Arr::get($response, 'app_secret'));
+        $this->info('名称：' . $response['name']);
+        $this->info('描述：' . $response['description']);
+        $this->info('IVR主机(Host):' . $response['app_host']);
+        $this->info('最大并发限制数:' . $response['total_concurrency_quota']);
+        $this->info('IVR_KEY:' . $response['app_key']);
+        $this->info('IVR_SECRET:' . $response['app_secret']);
 
         $this->line('把获取到的 IVR_KEY 和 IVR_SECRET 信息配置到 .env 对应的位置上。');
 
@@ -88,7 +88,7 @@ class IvrSignUp extends Command
 
     private function getAppHost()
     {
-        $app_host = $this->ask('请输入 IVR主机(host)，请以 http:// 或 https:// 开头');
+        $app_host = $this->ask('请输入 IVR主机(host)，请以 http:// 或 https:// 开头', 'http');
 
         if (!Str::startsWith($app_host, ['http://', 'https://'])) {
             $this->error('IVR主机(host) 格式错误。');
