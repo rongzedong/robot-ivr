@@ -25,7 +25,7 @@ class Outbound extends Controller
      */
     public function store(Request $request)
     {
-        info('stroe task:', $request->all());
+        info('store task:', $request->all());
     }
 
     /**
