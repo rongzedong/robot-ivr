@@ -25,7 +25,7 @@ class Outbound extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        info('stroe task:', $request->all());
     }
 
     /**
@@ -41,6 +41,16 @@ class Outbound extends Controller
      * @param $id
      */
     public function destroy($id)
+    {
+
+    }
+
+    public function start($id)
+    {
+
+    }
+
+    public function stop($id)
     {
 
     }
