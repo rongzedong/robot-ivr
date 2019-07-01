@@ -15,22 +15,29 @@ class CheckForAppSecret
      * @param  \Illuminate\Http\Request $request
      * @param  \Closure $next
      * @return mixed
+     * @throws \Throwable
      */
     public function handle($request, Closure $next)
     {
+        try {
 
-        return $next($request);
-//        $app_id = $this->getRequestAppId($request);
-//
-//        $date = $this->getRequestDate($request);
-//        empty($date) && abort(422, '缺少参数：date');
-//
-//        $sign = $this->getRequestSign($request);
-//        empty($sign) && abort(422, '缺少参数：sign');
-//
-//        !hash_equals($this->generateSign($date, $app_id, config('app_secret')), $sign) && abort(422, '验签失败');
-//
-//        return $next($request);
+            $app_id = $this->getRequestAppId($request);
+
+            $date = $this->getRequestDate($request);
+            empty($date) && abort(422, '缺少参数：date');
+
+            $sign = $this->getRequestSign($request);
+            empty($sign) && abort(422, '缺少参数：sign');
+
+            !hash_equals($this->generateSign($date, $app_id, config('app_secret')), $sign) && abort(422, '验签失败');
+
+            $next($request);
+
+            return 'SUCCESS';
+        } catch (\Throwable $e) {
+            throw $e;
+        }
+
     }
 
     /**
