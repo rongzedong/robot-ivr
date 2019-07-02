@@ -56,7 +56,7 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-
+$app->configure('app');
 $app->configure('passport_client');
 
 /*
