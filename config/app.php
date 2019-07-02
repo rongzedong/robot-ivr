@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'ivr_key' => env('IVR_KEY'),
+    'ivr_secret' => env('IVR_SECRET'),
 
     /*
      |------------------------------------

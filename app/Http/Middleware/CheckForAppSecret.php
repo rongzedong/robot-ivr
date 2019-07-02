@@ -21,15 +21,13 @@ class CheckForAppSecret
     {
         try {
 
-            $app_id = $this->getRequestAppId($request);
-
             $date = $this->getRequestDate($request);
             empty($date) && abort(422, '缺少参数：date');
 
             $sign = $this->getRequestSign($request);
             empty($sign) && abort(422, '缺少参数：sign');
 
-            !hash_equals($this->generateSign($date, $app_id, config('app_secret')), $sign) && abort(422, '验签失败');
+            !hash_equals($this->generateSign($date, config('app.ivr_key'), config('app.ivr_secret')), $sign) && abort(422, '验签失败');
 
             $next($request);
 
@@ -38,15 +36,6 @@ class CheckForAppSecret
             throw $e;
         }
 
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return string
-     */
-    private function getRequestAppId($request)
-    {
-        return object_get($request, 'app-key', $request->header('app-key'));
     }
 
     /**
