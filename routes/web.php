@@ -13,7 +13,7 @@
 
 $router->get('/', function () use ($router) {
     return [
-        app()['config'],
+        config('app'),
         config('app.ivr_key'),
         config('app.ivr_secret')
     ];
