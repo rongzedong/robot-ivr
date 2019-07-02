@@ -12,9 +12,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return [
-        config('app'),
-        config('app.ivr_key'),
-        config('app.ivr_secret')
-    ];
+    return config('app.name');
 });
