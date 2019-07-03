@@ -44,7 +44,7 @@ class Outbound extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->outboundTask->update($request->all(), $id);
+        $this->outboundTask->updateOrCreate(['uuid' => $id], $request->all());
     }
 
     /**
