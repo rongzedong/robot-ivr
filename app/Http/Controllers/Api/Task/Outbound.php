@@ -40,13 +40,11 @@ class Outbound extends Controller
     /**
      * @param Request $request
      * @param string $id
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function update(Request $request, $id)
     {
-        info('update task:', [
-            'id' => $id,
-            'data' => $request->all()
-        ]);
+        $this->outboundTask->update($request->all(), $id);
     }
 
     /**
@@ -54,7 +52,7 @@ class Outbound extends Controller
      */
     public function destroy($id)
     {
-
+        $this->outboundTask->delete($id);
     }
 
     public function start($id)
