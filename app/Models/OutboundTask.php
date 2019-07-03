@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Models\AutoDialer;
+namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
 /**
  * 外呼任务表
  * Class Task
- * @package App\Models\AutoDialer
+ * @package App\Models
  * @author Xingshun <250915790@qq.com>
  */
-class OutboundTask extends Model
+class OutboundTask extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $table = 'autodialer_task';
 
     public $incrementing = false;
@@ -30,6 +31,7 @@ class OutboundTask extends Model
     ];
 
     protected $fillable = [
+        'uuid',
         'name',
         'create_datetime',
         'alter_datetime',
@@ -64,7 +66,6 @@ class OutboundTask extends Model
         'start' => 'integer',
         'stop' => 'integer',
     ];
-
 
 
 }

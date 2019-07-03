@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api\Task;
 
 
 use App\Http\Controllers\Api\Controller;
+use App\Repositories\Eloquent\OutboundTaskRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -20,12 +21,20 @@ use Illuminate\Http\Request;
 class Outbound extends Controller
 {
 
+    protected $outboundTask;
+
+    public function __construct(OutboundTaskRepository $outboundTask)
+    {
+        $this->outboundTask = $outboundTask;
+    }
+
     /**
      * @param Request $request
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(Request $request)
     {
-        info('store task:', $request->all());
+        $this->outboundTask->create($request->all());
     }
 
     /**

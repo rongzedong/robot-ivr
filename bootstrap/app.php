@@ -58,6 +58,7 @@ $app->singleton(
 */
 $app->configure('app');
 $app->configure('passport_client');
+$app->configure('repository');
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +99,8 @@ $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 $app->register(XsKit\PassportClient\PassportClientServiceProvider::class);
+
+$app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
