@@ -34,7 +34,10 @@ class Outbound extends Controller
      */
     public function update(Request $request, $id)
     {
-        info('update task:', $request->all());
+        info('update task:', [
+            'id' => $id,
+            'data' => $request->all()
+        ]);
     }
 
     /**
