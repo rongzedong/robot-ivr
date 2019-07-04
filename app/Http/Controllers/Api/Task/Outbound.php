@@ -57,12 +57,12 @@ class Outbound extends Controller
 
     public function start($id)
     {
-
+        $this->outboundTask->start($id);
     }
 
     public function stop($id)
     {
-
+        $this->outboundTask->stop($id);
     }
 
 }

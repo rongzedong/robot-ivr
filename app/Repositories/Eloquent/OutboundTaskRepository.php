@@ -23,4 +23,15 @@ class OutboundTaskRepository extends BaseRepository
     }
 
 
+    public function start($task_id)
+    {
+        $this->find($task_id)->start();
+    }
+
+    public function stop($task_id)
+    {
+        $this->find($task_id)->stop();
+    }
+
+
 }

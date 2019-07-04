@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\ExampleEvent;
+use App\Events\OutboundTaskCreatedEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -21,10 +21,10 @@ class ExampleListener
     /**
      * Handle the event.
      *
-     * @param  ExampleEvent  $event
+     * @param  OutboundTaskCreatedEvent  $event
      * @return void
      */
-    public function handle(ExampleEvent $event)
+    public function handle(OutboundTaskCreatedEvent $event)
     {
         //
     }

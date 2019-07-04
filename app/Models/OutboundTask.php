@@ -67,5 +67,28 @@ class OutboundTask extends Model implements Transformable
         'stop' => 'integer',
     ];
 
+    /**
+     * 任务的启动
+     */
+    public function start()
+    {
+        if ($this->start === 1) {
+            return;
+        }
+        $this->start = 1;
+        $this->save();
+    }
+
+    /**
+     * 任务暂停
+     */
+    public function stop()
+    {
+        if ($this->start === 0) {
+            return;
+        }
+        $this->start = 0;
+        $this->save();
+    }
 
 }

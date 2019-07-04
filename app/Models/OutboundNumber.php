@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\AutoDialer;
+namespace App\Models;
 
 
 use App\Traits\Models\ModelTableDividable;
