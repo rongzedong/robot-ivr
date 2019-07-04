@@ -56,6 +56,8 @@ class OutboundTask extends Model implements Transformable
         'customer_service_id', //转接客服组id
         'sort',
         'call_per_second',
+        'call_notify_url',
+        'call_notify_type'
     ];
 
     protected $casts = [
