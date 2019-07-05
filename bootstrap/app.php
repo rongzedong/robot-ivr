@@ -119,6 +119,7 @@ $app->router->group([
 });
 
 $app->router->group([
+    'prefix' => 'v1',
     'namespace' => 'App\Http\Controllers',
     'middleware' => 'auth.secret',
 ], function ($router) {

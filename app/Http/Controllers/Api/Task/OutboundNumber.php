@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api\Task;
 
 
 use App\Http\Controllers\Api\Controller;
+use App\Repositories\Eloquent\OutboundNumberRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -19,13 +20,57 @@ use Illuminate\Http\Request;
  */
 class OutboundNumber extends Controller
 {
-    public function store(Request $request)
+    protected $outboundNumberRepository;
+
+    public function __construct(OutboundNumberRepository $outboundNumberRepository)
+    {
+        $this->outboundNumberRepository = $outboundNumberRepository;
+    }
+
+    public function index(Request $request, $task_id)
     {
 
     }
 
-    public function destroy($id)
+    /**
+     * @param Request $request
+     * @param $task_id
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function store(Request $request, $task_id)
     {
+        $this->outboundNumberRepository->setTask($task_id)->create($request->only([
+            'id',
+            'number',
+            'description',
+            'recycle',
+            'recycle_limit',
+            'time',
+        ]));
+    }
 
+    /**
+     * @param Request $request
+     * @param $task_id
+     * @param $id
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(Request $request, $task_id, $id)
+    {
+        $this->outboundNumberRepository->setTask($task_id)->update($request->only([
+            'description',
+            'recycle',
+            'recycle_limit',
+            'time',
+        ]), $id);
+    }
+
+    /**
+     * @param $task_id
+     * @param $id
+     */
+    public function destroy($task_id, $id)
+    {
+        $this->outboundNumberRepository->setTask($task_id)->delete($id);
     }
 }
