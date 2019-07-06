@@ -20,6 +20,7 @@ class OutboundNumber extends Model
     use ModelTableDividable, SoftDeletes;
 
     protected $fillable = [
+        'id',
         'number',
         'state',
         'status',
