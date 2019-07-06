@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Repositories\Eloquent;
+
+use Prettus\Repository\Eloquent\BaseRepository;
+use App\Models\OutboundNumber;
+
+
+/**
+ * Class OutboundNumberRepositoryEloquent.
+ *
+ * @package namespace App\Repositories\Eloquent;
+ */
+class OutboundNumberRepository extends BaseRepository
+{
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return OutboundNumber::class;
+    }
+
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setTask($id)
+    {
+        OutboundNumber::setTableIdentification($id);
+        return $this;
+    }
+
+}
