@@ -18,6 +18,7 @@ class OutboundNumberTransformer extends TransformerAbstract
     public function transform(OutboundNumber $number)
     {
         return $number->only([
+                'id',
                 'bill',
                 'duration',
                 'calldate',

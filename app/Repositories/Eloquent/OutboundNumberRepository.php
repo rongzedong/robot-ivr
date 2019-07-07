@@ -17,7 +17,7 @@ class OutboundNumberRepository extends BaseRepository
 {
     protected $fieldSearchable = [
         'id' => 'in',
-
+        'callid',
     ];
 
     /**
