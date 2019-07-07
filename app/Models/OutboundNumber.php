@@ -9,15 +9,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Prettus\Repository\Contracts\Presentable;
+use Prettus\Repository\Traits\PresentableTrait;
 
 /**
  * 自动外呼任务号码模型
  * Class Manage
  * @package App\Models\AutoDialer
  */
-class OutboundNumber extends Model
+class OutboundNumber extends Model implements Presentable
 {
-    use ModelTableDividable, SoftDeletes;
+    use ModelTableDividable, SoftDeletes,PresentableTrait;
 
     protected $fillable = [
         'id',

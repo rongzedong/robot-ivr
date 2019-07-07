@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Repositories\Presenters\OutboundNumberPresenter;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\OutboundNumber;
@@ -46,6 +47,11 @@ class OutboundNumberRepository extends BaseRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return OutboundNumberPresenter::class;
     }
 
 }
