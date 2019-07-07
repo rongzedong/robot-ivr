@@ -211,12 +211,12 @@ return [
         */
         'params' => [
             'search' => 'search',
-            'searchFields' => 'searchFields',
+            'searchFields' => 'search-fields',
             'filter' => 'filter',
-            'orderBy' => 'orderBy',
-            'sortedBy' => 'sortedBy',
+            'orderBy' => 'order-by',
+            'sortedBy' => 'sorted-by',
             'with' => 'with',
-            'searchJoin' => 'searchJoin'
+            'searchJoin' => 'search-join'
         ]
     ],
     /*

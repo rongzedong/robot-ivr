@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\OutboundNumber;
 
@@ -31,6 +32,15 @@ class OutboundNumberRepository extends BaseRepository
     {
         OutboundNumber::setTableIdentification($id);
         return $this;
+    }
+
+    /**
+     * Boot up the repository, pushing criteria
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 
 }

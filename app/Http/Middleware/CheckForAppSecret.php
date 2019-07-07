@@ -29,9 +29,9 @@ class CheckForAppSecret
 
             !hash_equals($this->generateSign($date, config('app.ivr_key'), config('app.ivr_secret')), $sign) && abort(422, '验签失败');
 
-            $next($request);
+            $result = $next($request);
 
-            return 'SUCCESS';
+            return $result ?: 'SUCCESS';
         } catch (\Throwable $e) {
             throw $e;
         }

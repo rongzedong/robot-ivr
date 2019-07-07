@@ -29,7 +29,7 @@ class OutboundNumber extends Controller
 
     public function index(Request $request, $task_id)
     {
-
+        return $this->outboundNumberRepository->setTask($task_id)->paginate($request->input('limit', 15));
     }
 
     /**
