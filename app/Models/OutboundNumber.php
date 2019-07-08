@@ -19,7 +19,9 @@ use Prettus\Repository\Traits\PresentableTrait;
  */
 class OutboundNumber extends Model implements Presentable
 {
-    use ModelTableDividable, SoftDeletes,PresentableTrait;
+    use ModelTableDividable, SoftDeletes, PresentableTrait;
+
+    public $incrementing = false;
 
     protected $fillable = [
         'id',
