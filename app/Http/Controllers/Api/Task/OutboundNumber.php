@@ -31,7 +31,6 @@ class OutboundNumber extends Controller
     {
         return $this->outboundNumberRepository->setTask($task_id)->get();
     }
-
     /**
      * @param Request $request
      * @param $task_id
