@@ -53,7 +53,7 @@ class InCriteria extends RequestCriteria
         if (stripos($search, ',')) {
             return explode(',', $search);
         }
-
+        dd($search);
         return $search;
     }
 }
