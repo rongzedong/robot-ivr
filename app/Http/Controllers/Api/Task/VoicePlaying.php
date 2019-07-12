@@ -26,9 +26,9 @@ class VoicePlaying
         $outboundNumber = $repository->skipPresenter()->setTask($task_id)->find($outbound_number_id);
 
         if ($outboundNumber) {
-            return response()->file($outboundNumber->recordfile, [
+            return response()->download($outboundNumber->recordfile, null, [
                 'Content-Type' => 'audio/x-wav'
-            ]);
+            ], null);
         }
 
         abort(404, '全程语音不存在');

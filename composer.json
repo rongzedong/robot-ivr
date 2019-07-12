@@ -14,6 +14,7 @@
         "league/fractal": "^0.18.0",
         "nesbot/carbon": "^2.19",
         "prettus/l5-repository": "^2.6",
+        "symfony/http-foundation": "^4.3",
         "vlucas/phpdotenv": "^3.3",
         "xskit/passport-client": "^2.0"
     },
