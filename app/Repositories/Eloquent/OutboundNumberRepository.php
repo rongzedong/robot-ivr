@@ -16,7 +16,7 @@ use App\Models\OutboundNumber;
 class OutboundNumberRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-        'id' => 'in',
+        'id',
         'callid',
     ];
 
