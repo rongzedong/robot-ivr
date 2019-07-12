@@ -23,7 +23,7 @@ class VoicePlaying
     public function outboundRecoding(OutboundNumberRepository $repository, $task_id, $outbound_number_id)
     {
 
-        $outboundNumber = $repository->setTask($task_id)->find($outbound_number_id);
+        $outboundNumber = $repository->skipPresenter()->setTask($task_id)->find($outbound_number_id);
 
         if ($outboundNumber) {
             return response()->file($outboundNumber->recordfile, [
