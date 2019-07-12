@@ -22,10 +22,10 @@ class CheckForAppSecret
         try {
 
             $date = $this->getRequestDate($request);
-            empty($date) && abort(422, '缺少参数：date');
+            empty($date) && abort(422, '未授权');
 
             $sign = $this->getRequestSign($request);
-            empty($sign) && abort(422, '缺少参数：sign');
+            empty($sign) && abort(422, '未授权');
 
             !hash_equals($this->generateSign($date, config('app.ivr_key'), config('app.ivr_secret')), $sign) && abort(422, '验签失败');
 

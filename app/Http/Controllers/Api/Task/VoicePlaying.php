@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Api\Task;
 
 
+use Illuminate\Support\Facades\URL;
+
 class VoicePlaying
 {
     /**
@@ -18,6 +20,7 @@ class VoicePlaying
      */
     public function outboundRecoding($task_id, $outbound_number_id)
     {
+        dd(URL::current());
         info($task_id, $outbound_number_id);
     }
 }
