@@ -30,7 +30,7 @@ class InCriteria extends RequestCriteria
             foreach ($fields as $row) {
                 try {
                     list($field, $value) = explode(':', $row);
-                    $searchData[$field] = stripos($value, '-') ? explode('-', $value) : $value;
+                    $searchData[$field] = stripos($value, ',') ? explode(',', $value) : $value;
                 } catch (\Exception $e) {
                     //Surround offset error
                 }
@@ -50,11 +50,10 @@ class InCriteria extends RequestCriteria
 
         $search = parent::parserSearchValue($search);
 
-        if (stripos($search, '-')) {
-            return explode('-', $search);
+        if (stripos($search, ',')) {
+            return explode(',', $search);
         }
 
-        dd($search);
         return $search;
     }
 }
