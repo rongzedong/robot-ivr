@@ -20,7 +20,7 @@ class VoicePlaying
      */
     public function outboundRecoding($task_id, $outbound_number_id)
     {
-        dd(URL::current());
+        dd(URL::secure('aaa'));
         info($task_id, $outbound_number_id);
     }
 }
