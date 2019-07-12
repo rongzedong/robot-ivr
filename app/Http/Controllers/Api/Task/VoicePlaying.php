@@ -9,18 +9,28 @@
 namespace App\Http\Controllers\Api\Task;
 
 
-use Illuminate\Support\Facades\URL;
+use App\Repositories\Eloquent\OutboundNumberRepository;
 
 class VoicePlaying
 {
     /**
      * 播放外呼任务全程录音
+     * @param OutboundNumberRepository $repository
      * @param string $task_id 任务ID
      * @param string $outbound_number_id 号码ID
+     * @return
      */
-    public function outboundRecoding($task_id, $outbound_number_id)
+    public function outboundRecoding(OutboundNumberRepository $repository, $task_id, $outbound_number_id)
     {
-        dd(URL::asset('v1/aaa'));
-        info($task_id, $outbound_number_id);
+
+        $outboundNumber = $repository->setTask($task_id)->find($outbound_number_id);
+
+        if ($outboundNumber) {
+            return response()->file($outboundNumber->recordfile, [
+                'Content-Type' => 'audio/x-wav'
+            ]);
+        }
+
+        abort(404, '全程语音不存在');
     }
 }
