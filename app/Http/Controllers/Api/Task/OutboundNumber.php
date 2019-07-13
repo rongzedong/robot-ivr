@@ -31,6 +31,7 @@ class OutboundNumber extends Controller
     {
         return $this->outboundNumberRepository->setTask($task_id)->get();
     }
+
     /**
      * @param Request $request
      * @param $task_id
@@ -56,12 +57,7 @@ class OutboundNumber extends Controller
      */
     public function update(Request $request, $task_id, $id)
     {
-        $this->outboundNumberRepository->setTask($task_id)->update($request->only([
-            'description',
-            'recycle',
-            'recycle_limit',
-            'time',
-        ]), $id);
+        $this->outboundNumberRepository->setTask($task_id)->update($request->all(), $id);
     }
 
     /**
