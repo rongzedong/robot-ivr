@@ -57,6 +57,7 @@ class OutboundNumber extends Controller
      */
     public function update(Request $request, $task_id, $id)
     {
+        dd($request->all(), $task_id, $id);
         $this->outboundNumberRepository->setTask($task_id)->update($request->all(), $id);
     }
 
