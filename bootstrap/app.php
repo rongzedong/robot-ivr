@@ -123,6 +123,13 @@ $app->router->group([
     'namespace' => 'App\Http\Controllers',
     'middleware' => 'auth.secret',
 ], function ($router) {
+    require __DIR__ . '/../routes/api_secret.php';
+});
+
+$app->router->group([
+    'prefix' => 'v1',
+    'namespace' => 'App\Http\Controllers',
+], function ($router) {
     require __DIR__ . '/../routes/api.php';
 });
 
