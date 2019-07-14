@@ -117,7 +117,7 @@ class OutboundNumber extends Model implements Presentable
             $table->string('description')->nullable()->comment('号码状态描述');
             $table->unsignedInteger('recycle')->nullable()->comment('回收次数');
             $table->unsignedInteger('recycle_limit')->nullable()->comment('回收次数限制');
-            $table->string('callid')->nullable();
+            $table->uuid('callid')->nullable();
             $table->dateTime('calldate')->nullable()->comment('呼叫时间');
             $table->unsignedInteger('bill')->nullable()->comment('应答后开始计费的毫秒数');
             $table->unsignedInteger('duration')->nullable()->comment('从开始呼叫到挂断的户毫秒数');

@@ -26,8 +26,3 @@ $router->post('task/{task_id}/outbound/number', 'Api\Task\OutboundNumber@store')
 $router->put('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@update');
 
 $router->delete('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@destroy');
-
-/**
- * 通话语音播放
- */
-$router->get('outbound/{task_id}/{number_id}/voice_playing', 'Api\Task\VoicePlaying@outboundRecoding');
