@@ -48,7 +48,7 @@ class OutboundRecord extends Controller
     public function store(Request $request, OutboundNumberRepository $numberRepository, $task_id)
     {
         if ($request->call_id) {
-            $data = $numberRepository->setTask($task_id)->scopeQuery(function ($model) use ($request) {
+            $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
 
@@ -67,7 +67,7 @@ class OutboundRecord extends Controller
      */
     public function update(OutboundNumberRepository $numberRepository, $task_id, $id)
     {
-        $data = $numberRepository->setTask($task_id)->scopeQuery(function ($model) use ($id) {
+        $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($id) {
             return $model->where('callid', $id);
         })->first();
 
