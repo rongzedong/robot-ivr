@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Criteria\OutboundNumberByIdCriteria;
 use App\Repositories\Presenters\OutboundNumberPresenter;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;

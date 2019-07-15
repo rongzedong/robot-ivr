@@ -16,6 +16,22 @@ class OutboundCallRecord extends Model
     protected $table = 'outbound_call_records';
 
     protected $fillable = [
-
+        'id',
+        'number',
+        'state',
+        'status',
+        'description',
+        'calldate',
+        'bill',
+        'duration',
+        'hangupcause',
+        'hangupdate',
+        'answerdate',
+        'recordfile',
+        'calleridnumber',
+        'bridge_callid',
+        'bridge_number',
+        'bridge_calldate',
+        'bridge_answerdate',
     ];
 }
