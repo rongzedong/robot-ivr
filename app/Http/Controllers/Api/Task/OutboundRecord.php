@@ -53,7 +53,7 @@ class OutboundRecord extends Controller
                 return $model->where('callid', $request->call_id);
             })->first();
             if ($data) {
-                $this->repository->updateOrCreate(['id' => $data['callid']], $data);
+                $this->repository->updateOrCreate(['id' => $data['callid']], $data->toArray());
             }
         }
 
@@ -74,8 +74,7 @@ class OutboundRecord extends Controller
         })->first();
 
         if ($data) {
-            $data['id'] = $data['callid'];
-            $this->repository->update($data, $id);
+            $this->repository->update($data->toArray(), $id);
         }
 
         abort(404);
