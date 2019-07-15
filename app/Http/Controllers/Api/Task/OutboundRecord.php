@@ -42,12 +42,13 @@ class OutboundRecord extends Controller
     /**
      * @param Request $request
      * @param OutboundNumberRepository $numberRepository
+     * @param string $task_id
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(Request $request, OutboundNumberRepository $numberRepository)
+    public function store(Request $request, OutboundNumberRepository $numberRepository, $task_id)
     {
-        if ($request->call_id && $request->task_id) {
-            $data = $numberRepository->setTask($request->task_id)->scopeQuery(function ($model) use ($request) {
+        if ($request->call_id) {
+            $data = $numberRepository->setTask($task_id)->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
 
