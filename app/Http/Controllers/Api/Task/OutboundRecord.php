@@ -46,8 +46,8 @@ class OutboundRecord extends Controller
      */
     public function store(Request $request, OutboundNumberRepository $numberRepository)
     {
-        if ($request->call_id) {
-            $data = $numberRepository->scopeQuery(function ($model) use ($request) {
+        if ($request->call_id && $request->task_id) {
+            $data = $numberRepository->setTask($request->task_id)->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
 
@@ -60,12 +60,13 @@ class OutboundRecord extends Controller
 
     /**
      * @param OutboundNumberRepository $numberRepository
-     * @param $id
+     * @param string $task_id 任务ID
+     * @param string $id 通话记录ID
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(OutboundNumberRepository $numberRepository, $id)
+    public function update(OutboundNumberRepository $numberRepository, $task_id, $id)
     {
-        $data = $numberRepository->scopeQuery(function ($model) use ($id) {
+        $data = $numberRepository->setTask($task_id)->scopeQuery(function ($model) use ($id) {
             return $model->where('callid', $id);
         })->first();
 

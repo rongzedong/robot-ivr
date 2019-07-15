@@ -30,7 +30,7 @@ $router->delete('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@
 /**
  * 外呼通话记录
  */
-$router->get('outbound/record', 'Api\Task\OutboundRecord@index');
-$router->get('outbound/record/{id}', 'Api\Task\OutboundRecord@show');
-$router->post('outbound/record', 'Api\Task\OutboundRecord@store');
-$router->put('outbound/record/{id}', 'Api\Task\OutboundRecord@update');
+$router->get('task/{task_id}/outbound/record', 'Api\Task\OutboundRecord@index');
+$router->get('task/{task_id}/outbound/record/{id}', 'Api\Task\OutboundRecord@show');
+$router->post('task/{task_id}/outbound/record', 'Api\Task\OutboundRecord@store');
+$router->put('task/{task_id}/outbound/record/{id}', 'Api\Task\OutboundRecord@update');
