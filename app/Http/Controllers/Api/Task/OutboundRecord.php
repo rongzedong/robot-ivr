@@ -49,11 +49,13 @@ class OutboundRecord extends Controller
     public function store(Request $request, OutboundNumberRepository $numberRepository, $task_id)
     {
         if ($request->call_id) {
+            /** @var \App\Models\OutboundNumber $data */
             $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
             if ($data) {
-                $this->repository->updateOrCreate(['id' => $data['callid']], $data->toArray());
+
+                $this->repository->updateOrCreate(['id' => $data['callid']], $data->setHidden(['id'])->toArray());
             }
         }
     }
@@ -71,7 +73,7 @@ class OutboundRecord extends Controller
         })->first();
 
         if ($data) {
-            $this->repository->update($data->toArray(), $id);
+            $this->repository->update($data->setHidden(['id'])->toArray(), $id);
         }
     }
 }
