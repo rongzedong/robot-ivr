@@ -9,24 +9,23 @@
 namespace App\Http\Controllers\Api\Task;
 
 
-use App\Repositories\Eloquent\OutboundNumberRepository;
+use App\Repositories\Eloquent\OutboundCallRecordRepository;
 
 class VoicePlaying
 {
     /**
      * 播放外呼任务全程录音
-     * @param OutboundNumberRepository $repository
-     * @param string $task_id 任务ID
-     * @param string $outbound_number_id 号码ID
+     * @param OutboundCallRecordRepository $repository
+     * @param string $id 呼叫ID
      * @return
      */
-    public function outboundRecoding(OutboundNumberRepository $repository, $task_id, $outbound_number_id)
+    public function outboundRecoding(OutboundCallRecordRepository $repository, $id)
     {
 
-        $outboundNumber = $repository->skipPresenter()->setTask($task_id)->find($outbound_number_id);
+        $record = $repository->find($id);
 
-        if ($outboundNumber) {
-            return response()->download($outboundNumber->recordfile, null, [
+        if ($record) {
+            return response()->download($record->recordfile, null, [
                 'Content-Type' => 'audio/x-wav'
             ], null);
         }

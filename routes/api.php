@@ -5,4 +5,4 @@
 /**
  * 通话语音播放
  */
-$router->get('outbound/{task_id}/{number_id}/voice_playing', 'Api\Task\VoicePlaying@outboundRecoding');
+$router->get('outbound/{call_id}/voice_playing.wav', 'Api\Task\VoicePlaying@outboundRecoding');

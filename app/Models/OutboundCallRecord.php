@@ -15,6 +15,8 @@ class OutboundCallRecord extends Model
 {
     protected $table = 'outbound_call_records';
 
+    public $incrementing = false;
+
     protected $fillable = [
         'id',
         'number',

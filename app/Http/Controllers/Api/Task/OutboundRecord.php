@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Api\Task;
 
 use App\Http\Controllers\Api\Controller;
 use App\Repositories\Eloquent\OutboundCallRecordRepository;
+use App\Repositories\Eloquent\OutboundNumberRepository;
 use Illuminate\Http\Request;
 
 /**
@@ -40,20 +41,35 @@ class OutboundRecord extends Controller
 
     /**
      * @param Request $request
+     * @param OutboundNumberRepository $numberRepository
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(Request $request)
+    public function store(Request $request, OutboundNumberRepository $numberRepository)
     {
-        $this->repository->create($request->all());
+        if ($request->call_id) {
+            $data = $numberRepository->scopeQuery(function ($model) use ($request) {
+                return $model->where('callid', $request->call_id);
+            })->first();
+
+            $data['id'] = $data['callid'];
+            $this->repository->create($data);
+        }
+
+
     }
 
     /**
-     * @param Request $request
+     * @param OutboundNumberRepository $numberRepository
      * @param $id
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(Request $request, $id)
+    public function update(OutboundNumberRepository $numberRepository, $id)
     {
-        $this->repository->update($request->all(), $id);
+        $data = $numberRepository->scopeQuery(function ($model) use ($id) {
+            return $model->where('callid', $id);
+        })->first();
+
+        $data['id'] = $data['callid'];
+        $this->repository->update($data, $id);
     }
 }
