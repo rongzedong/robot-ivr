@@ -49,18 +49,16 @@ class OutboundRecord extends Controller
     public function store(Request $request, OutboundNumberRepository $numberRepository, $task_id)
     {
         if ($request->call_id) {
-            DB::enableQueryLog();
             $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
-            dd($data,DB::getQueryLog());
             if ($data) {
                 $data['id'] = $data['callid'];
                 $this->repository->create($data);
             }
-
         }
 
+        abort(404);
 
     }
 
@@ -80,5 +78,7 @@ class OutboundRecord extends Controller
             $data['id'] = $data['callid'];
             $this->repository->update($data, $id);
         }
+
+        abort(404);
     }
 }
