@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Controller;
 use App\Repositories\Eloquent\OutboundCallRecordRepository;
 use App\Repositories\Eloquent\OutboundNumberRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * 通话记录
@@ -51,7 +52,7 @@ class OutboundRecord extends Controller
             $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
-            dd($data);
+            dd($data,DB::getQueryLog());
             if ($data) {
                 $data['id'] = $data['callid'];
                 $this->repository->create($data);
