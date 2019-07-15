@@ -56,9 +56,6 @@ class OutboundRecord extends Controller
                 $this->repository->updateOrCreate(['id' => $data['callid']], $data->toArray());
             }
         }
-
-        abort(404);
-
     }
 
     /**
@@ -76,7 +73,5 @@ class OutboundRecord extends Controller
         if ($data) {
             $this->repository->update($data->toArray(), $id);
         }
-
-        abort(404);
     }
 }
