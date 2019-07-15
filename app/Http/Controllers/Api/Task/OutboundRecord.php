@@ -49,6 +49,7 @@ class OutboundRecord extends Controller
     public function store(Request $request, OutboundNumberRepository $numberRepository, $task_id)
     {
         if ($request->call_id) {
+            DB::enableQueryLog();
             $data = $numberRepository->setTask($task_id)->skipPresenter()->scopeQuery(function ($model) use ($request) {
                 return $model->where('callid', $request->call_id);
             })->first();
