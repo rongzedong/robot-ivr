@@ -24,7 +24,7 @@ class VoicePlaying
 
         $record = $repository->find($id);
 
-        if ($record) {
+        if ($record && $record->recordfile) {
             return response()->download($record->recordfile, null, [
                 'Content-Type' => 'audio/x-wav'
             ], null);
