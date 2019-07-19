@@ -22,10 +22,10 @@ class VoicePlaying
     public function outboundRecoding(OutboundCallRecordRepository $repository, $id)
     {
 
-        $record = $repository->find($id);
+        $record_file = $repository->getRecordFile($id);
 
-        if ($record && $record->recordfile) {
-            return response()->download($record->recordfile, null, [
+        if ($record_file) {
+            return response()->download($record_file, null, [
                 'Content-Type' => 'audio/x-wav'
             ], null);
         }
