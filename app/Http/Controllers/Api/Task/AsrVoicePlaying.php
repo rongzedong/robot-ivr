@@ -28,9 +28,10 @@ class AsrVoicePlaying extends Controller
     {
         //转换目录
         $real_path = str_replace('.', '/', $path) . '/' . $filename . '.wav';
-        dd($real_path);
+
         try {
             $storage = Storage::disk('smart_ivr');
+            dd($real_path, $storage->exists($real_path));
             if ($storage->exists($real_path)) {
                 return $storage->get($real_path);
 
