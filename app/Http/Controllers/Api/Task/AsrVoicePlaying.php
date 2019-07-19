@@ -31,7 +31,6 @@ class AsrVoicePlaying extends Controller
 
         try {
             $storage = Storage::disk('smart_ivr');
-            dd($real_path, $storage->exists($real_path));
             if ($storage->exists($real_path)) {
                 return $storage->get($real_path);
 
