@@ -32,8 +32,9 @@ class AsrVoicePlaying extends Controller
         try {
             $storage = Storage::disk('smart_ivr');
             if ($storage->exists($real_path)) {
-                return $storage->get($real_path);
-
+                return response()->download($storage->path($real_path), null, [
+                    'Content-Type' => 'audio/x-wav'
+                ], null);
             }
         } catch (\Illuminate\Contracts\Filesystem\FileNotFoundException $e) {
             abort(404);
