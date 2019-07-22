@@ -7,6 +7,8 @@
  */
 $router->get('outbound/{call_id}/voice_playing.wav', 'Api\Task\VoicePlaying@outboundRecoding');
 
+$router->get('inbound/{path}/{filename}/voice_playing.wav', 'Api\Task\VoicePlaying@inboundRecoding');
+
 /**
  * asr 语音
  */

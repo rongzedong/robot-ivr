@@ -67,7 +67,7 @@ return [
         //通话记录语音明细
         'smart_ivr' => [
             'driver' => 'local',
-            'root' => env('ASR_DIR', '/mnt/smartivr/asrdir'),
+            'root' => env('ASR_DIR', '/mnt/smartivr'),
         ],
 
     ],

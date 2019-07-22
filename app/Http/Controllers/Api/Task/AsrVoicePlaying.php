@@ -27,7 +27,7 @@ class AsrVoicePlaying extends Controller
     public function index($path, $filename)
     {
         //转换目录
-        $real_path = str_replace('.', '/', $path) . '/' . $filename . '.wav';
+        $real_path =  '/asrdir/' .str_replace('.', '/', $path) . '/' . $filename . '.wav';
 
         try {
             $storage = Storage::disk('smart_ivr');
