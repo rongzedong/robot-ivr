@@ -28,6 +28,7 @@ class OutboundNumberTransformer extends TransformerAbstract
                 'hangupcause',
                 'hangupdate',
                 'answerdate',
+                'recycle',
                 'bridge_callid',
                 'bridge_number',
                 'bridge_calldate',
