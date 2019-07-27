@@ -164,5 +164,25 @@ class OutboundNumber extends Model implements Presentable
         return Schema::hasTable("autodialer_number_{$task_id}");
     }
 
+    /**
+     * 作用域  可在次回播的
+     * @param $query
+     */
+    public function scopeRecycleEnable($query)
+    {
+        $query->whereRaw('recycle_limit > recycle');
+    }
+
+    /**
+     * 作用域 呼叫失败（线路问题）
+     * @inheritdoc
+     */
+    public function scopeLineFailed($query)
+    {
+        return $query->where('state', 10)
+            ->whereNull('status')
+            ->where('bill', 0)
+            ->where('duration', '<', 10000);
+    }
 
 }
