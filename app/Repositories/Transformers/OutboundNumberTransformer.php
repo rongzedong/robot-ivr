@@ -23,6 +23,7 @@ class OutboundNumberTransformer extends TransformerAbstract
                 'status',
                 'description',
                 'bill',
+                'callid',
                 'duration',
                 'calldate',
                 'hangupcause',
