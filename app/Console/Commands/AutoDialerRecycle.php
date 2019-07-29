@@ -50,19 +50,15 @@ class AutoDialerRecycle extends Command
         $task_id = $this->argument('task_id');
 
         //扫描呼叫失败的任务号码
-        $taskNumber = $repository
-            ->setTask($task_id)->scopeQuery(function ($model) {
-                return $model->recycleEnable()->lineFailed();
-            })
-            ->get();
-        //重新外呼
-        $taskNumber->each(function ($item) use ($task_id) {
-            OutboundNumber::setTableIdentification($task_id);
-            $item->increment('recycle', 1, [
-                'state' => null,
-                'calldate' => Carbon::now(),
-            ]);
-        });
+        $repository->setTask($task_id)->scopeQuery(function ($model) {
+            return $model->recycleEnable()->lineFailed();
+        })->get()
+            ->each(function ($item) {
+                $item->increment('recycle', 1, [
+                    'state' => null,
+                    'calldate' => Carbon::now(),
+                ]);
+            });
 
     }
 }
