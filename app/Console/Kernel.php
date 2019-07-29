@@ -2,6 +2,9 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AutoDialerRecycle;
+use App\Console\Commands\FreeSwitchIpDel;
+use App\Console\Commands\FreeSwitchIpReg;
 use App\Console\Commands\FreeSwitchSipDel;
 use App\Console\Commands\FreeSwitchSipReg;
 use App\Console\Commands\IvrSignUp;
@@ -19,6 +22,12 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         FreeSwitchSipReg::class,
         FreeSwitchSipDel::class,
+
+        FreeSwitchIpReg::class,
+        FreeSwitchIpDel::class,
+
+        AutoDialerRecycle::class,
+
         IvrSignUp::class,
     ];
 
