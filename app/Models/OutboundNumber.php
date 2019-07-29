@@ -167,10 +167,11 @@ class OutboundNumber extends Model implements Presentable
     /**
      * 作用域  可在次回播的
      * @param $query
+     * @return $this
      */
     public function scopeRecycleEnable($query)
     {
-        $query->whereRaw('recycle_limit > recycle');
+        return $query->whereRaw('recycle_limit > recycle');
     }
 
     /**

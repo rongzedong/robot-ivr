@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\OutboundNumber;
 use App\Repositories\Eloquent\OutboundNumberRepository;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
@@ -56,6 +57,7 @@ class AutoDialerRecycle extends Command
             ->get();
         //重新外呼
         $taskNumber->each(function ($item) use ($task_id) {
+            OutboundNumber::setTableIdentification($task_id);
             $item->increment('recycle', 1, [
                 'state' => null,
                 'calldate' => Carbon::now(),
