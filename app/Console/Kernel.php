@@ -31,6 +31,6 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //扫描任务
-        $schedule->job(new ScanTaskJob())->withoutOverlapping();
+        $schedule->job(new ScanTaskJob())->withoutOverlapping()->runInBackground();
     }
 }
