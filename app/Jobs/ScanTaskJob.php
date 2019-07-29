@@ -32,7 +32,9 @@ class ScanTaskJob extends Job
      */
     public function handle(OutboundTaskRepository $repository)
     {
-        $taskIds = $repository->pluck('uuid');
+        $taskIds = $repository->scopeQuery(function ($query) {
+            return $query->where('start', 1);
+        })->pluck('uuid');
 
         $taskIds->each(function ($task_id) {
             //失败自动重呼
