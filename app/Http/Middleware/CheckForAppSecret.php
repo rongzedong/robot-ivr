@@ -31,7 +31,7 @@ class CheckForAppSecret
 
             $result = $next($request);
 
-            return $result ?: response('SUCCESS')->withHeaders([
+            return !is_null($result) ? $result : response('SUCCESS')->withHeaders([
                 'Content-Type' => 'text/plain'
             ]);
         } catch (\Throwable $e) {
