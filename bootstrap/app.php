@@ -79,6 +79,7 @@ $app->routeMiddleware([
     //'auth' => App\Http\Middleware\Authenticate::class,
 
     'auth.secret' => App\Http\Middleware\CheckForAppSecret::class,
+    'default.response' => \App\Http\Middleware\DefaultResponse::class,
 ]);
 
 /*
@@ -121,7 +122,7 @@ $app->router->group([
 $app->router->group([
     'prefix' => 'v1',
     'namespace' => 'App\Http\Controllers',
-    'middleware' => 'auth.secret',
+    'middleware' => ['auth.secret', 'default.response'],
 ], function ($router) {
     require __DIR__ . '/../routes/api_secret.php';
 });
