@@ -28,7 +28,7 @@ class DefaultResponse
         info('run middleware default.response', [
             'result' => [
                 $result->getOriginalContent(),
-                $request->getContent()
+                $result->getContent()
             ],
         ]);
         return !is_null($result) ? $result : response('SUCCESS')->withHeaders([
