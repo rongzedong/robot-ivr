@@ -33,6 +33,20 @@ class OutboundNumber extends Controller
     }
 
     /**
+     * 已开始呼叫的号码列表
+     * @param $task_id
+     * @return mixed
+     */
+    public function callStarted($task_id)
+    {
+        return $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function($model){
+            return $model->whereNotNull('state');
+        })->get();
+
+    }
+
+
+    /**
      * @param Request $request
      * @param $task_id
      * @throws \Prettus\Validator\Exceptions\ValidatorException
@@ -41,7 +55,7 @@ class OutboundNumber extends Controller
     {
         $this->outboundNumberRepository->setTask($task_id)->updateOrCreate([
             'id' => $request->id,
-        ],$request->only([
+        ], $request->only([
             'number',
             'description',
             'recycle',

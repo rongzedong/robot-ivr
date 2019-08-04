@@ -21,6 +21,8 @@ $router->delete('task/outbound/{id}', 'Api\Task\Outbound@destroy');
  */
 $router->get('task/{task_id}/outbound/number', 'Api\Task\OutboundNumber@index');
 
+$router->get('task/{task_id}/outbound/number/call_started', 'Api\Task\OutboundNumber@callStarted');
+
 $router->post('task/{task_id}/outbound/number', 'Api\Task\OutboundNumber@store');
 
 $router->put('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@update');
