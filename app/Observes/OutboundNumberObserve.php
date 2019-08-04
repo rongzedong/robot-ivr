@@ -17,5 +17,7 @@ class OutboundNumberObserve
     {
         //软删除时，防止继续呼叫
         $model->state = 10;
+
+        $model->save();
     }
 }
