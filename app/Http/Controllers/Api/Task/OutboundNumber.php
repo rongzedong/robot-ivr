@@ -53,6 +53,13 @@ class OutboundNumber extends Controller
      */
     public function store(Request $request, $task_id)
     {
+        dd($task_id,$request->id,$request->only([
+            'number',
+            'description',
+            'recycle',
+            'recycle_limit',
+            'time',
+        ]));
         $this->outboundNumberRepository->setTask($task_id)->updateOrCreate([
             'id' => $request->id,
         ], $request->only([
