@@ -9,6 +9,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Response;
 
 class DefaultResponse
 {
@@ -22,9 +23,13 @@ class DefaultResponse
      */
     public function handle($request, Closure $next)
     {
+        /** @var Response $result */
         $result = $next($request);
         info('run middleware default.response', [
-            'result' => $result,
+            'result' => [
+                $result->getOriginalContent(),
+                $request->getContent()
+            ],
         ]);
         return !is_null($result) ? $result : response('SUCCESS')->withHeaders([
             'Content-Type' => 'text/plain'
