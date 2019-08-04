@@ -23,6 +23,7 @@ class DefaultResponse
     public function handle($request, Closure $next)
     {
         $result = $next($request);
+        info('run middleware default.response');
         return !is_null($result) ? $result : response('SUCCESS')->withHeaders([
             'Content-Type' => 'text/plain'
         ]);

@@ -28,7 +28,7 @@ class CheckForAppSecret
             empty($sign) && abort(422, '未授权');
 
             !hash_equals($this->generateSign($date, config('app.ivr_key'), config('app.ivr_secret')), $sign) && abort(422, '验签失败');
-
+            info('run middleware app.secret');
             return $next($request);
         } catch (\Throwable $e) {
             throw $e;
