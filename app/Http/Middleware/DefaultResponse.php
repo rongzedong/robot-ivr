@@ -25,13 +25,7 @@ class DefaultResponse
     {
         /** @var Response $result */
         $result = $next($request);
-        info('run middleware default.response', [
-            'result' => [
-                $result->getOriginalContent(),
-                $result->getContent()
-            ],
-        ]);
-        return !is_null($result) ? $result : response('SUCCESS')->withHeaders([
+        return !is_null($result->getOriginalContent()) ? $result : response('SUCCESS')->withHeaders([
             'Content-Type' => 'text/plain'
         ]);
     }
