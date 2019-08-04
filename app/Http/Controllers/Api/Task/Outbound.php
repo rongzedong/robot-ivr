@@ -30,12 +30,18 @@ class Outbound extends Controller
 
     /**
      * @param Request $request
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(Request $request)
     {
-        $this->outboundTask->scopeQuery(function ($model) use ($request) {
+        $task = $this->outboundTask->scopeQuery(function ($model) use ($request) {
             return $model->where('uuid', $request->input('uuid'));
-        })->firstOrCreate($request->all());
+        })->first();
+
+        if (is_null($task)) {
+            $this->outboundTask->create($request->all());
+        }
+
     }
 
     /**
