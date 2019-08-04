@@ -31,7 +31,7 @@ class CheckForAppSecret
 
             $result = $next($request);
 
-            return $result ?: 'SUCCESS';
+            return $result ?: response('SUCCESS');
         } catch (\Throwable $e) {
             throw $e;
         }
