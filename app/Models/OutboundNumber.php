@@ -105,7 +105,7 @@ class OutboundNumber extends Model implements Presentable
          * 任务号码表，动态生成 表名格式 autodialer_number_{任务uuid}
          */
         Schema::create("autodialer_number_{$task_id}", function (Blueprint $table) {
-            $table->unsignedInteger('id')->primary();
+            $table->unsignedInteger('id');
             $table->string('number', 20)->comment('电话号码');
 
             $table->unsignedTinyInteger('state')->nullable()
@@ -134,6 +134,7 @@ class OutboundNumber extends Model implements Presentable
             $table->unsignedInteger('time')->default(0)->comment('拨打次数');
             $table->timestamps();
             $table->softDeletes();
+            $table->primary('id');
             //号码回收扫描索引
             $table->index(['state', 'status', 'bill', 'duration'], 'state_status_bill_duration_index');
         });
