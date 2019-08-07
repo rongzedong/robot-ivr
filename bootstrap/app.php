@@ -59,6 +59,7 @@ $app->singleton(
 $app->configure('app');
 $app->configure('passport_client');
 $app->configure('repository');
+$app->configure('cors');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,7 @@ $app->routeMiddleware([
 
     'auth.secret' => App\Http\Middleware\CheckForAppSecret::class,
     'default.response' => \App\Http\Middleware\DefaultResponse::class,
+    'cors' => \Barryvdh\Cors\HandleCors::class,
 ]);
 
 /*
@@ -102,6 +104,8 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 $app->register(XsKit\PassportClient\PassportClientServiceProvider::class);
 
 $app->register(Prettus\Repository\Providers\LumenRepositoryServiceProvider::class);
+
+$app->register(Barryvdh\Cors\ServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -130,6 +134,7 @@ $app->router->group([
 $app->router->group([
     'prefix' => 'v1',
     'namespace' => 'App\Http\Controllers',
+    'middleware' => 'cors',
 ], function ($router) {
     require __DIR__ . '/../routes/api.php';
 });

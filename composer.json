@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.1.3",
         "babenkoivan/scout-elasticsearch-driver": "^3.10",
+        "barryvdh/laravel-cors": "^0.11.3",
         "enqueue/amqp-lib": "^0.9.8",
         "illuminate/redis": "^5.8",
         "laravel/lumen-framework": "5.8.*",
