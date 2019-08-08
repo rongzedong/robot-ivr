@@ -102,6 +102,7 @@ class OutboundNumber extends Model implements Presentable
     public static function createTable($task_id)
     {
         self::setTableIdentification($task_id);
+        self::dropTable($task_id);
         /**
          * 任务号码表，动态生成 表名格式 autodialer_number_{任务uuid}
          */
@@ -140,7 +141,7 @@ class OutboundNumber extends Model implements Presentable
             $table->index(['state', 'status', 'bill', 'duration'], 'state_status_bill_duration_index');
         });
 
-        return Schema::hasTable("autodialer_number_{$task_id}");
+        return self::hasTable($task_id);
     }
 
     /**

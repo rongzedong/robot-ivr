@@ -45,7 +45,7 @@ class OutboundTaskObserve
         do {
             $flat = OutboundNumber::createTable($uuid);
             $n++;
-            sleep(2);
+            usleep(500);
         } while ($n < $max && !$flat);
 
     }
@@ -57,7 +57,7 @@ class OutboundTaskObserve
         do {
             $flat = OutboundNumber::dropTable($uuid);
             $n++;
-            sleep(2);
+            usleep(500);
         } while ($n < $max && !$flat);
 
     }
