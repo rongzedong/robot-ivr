@@ -19,6 +19,7 @@ class OutboundCallRecord extends Model
 
     protected $fillable = [
         'id',
+        'task_id',
         'number',
         'state',
         'status',

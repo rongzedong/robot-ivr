@@ -34,5 +34,3 @@ $router->delete('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@
  */
 $router->get('task/{task_id}/outbound/record', 'Api\Task\OutboundRecord@index');
 $router->get('task/{task_id}/outbound/record/{id}', 'Api\Task\OutboundRecord@show');
-$router->post('task/{task_id}/outbound/record', 'Api\Task\OutboundRecord@store');
-$router->put('task/{task_id}/outbound/record/{id}', 'Api\Task\OutboundRecord@update');

@@ -17,7 +17,8 @@ class CreateOutboundCallRecordsTable extends Migration
          * 外呼通话数据记录表
          */
         Schema::create('outbound_call_records', function (Blueprint $table) {
-            $table->uuid('id')->primary()->comment('通话ID');
+            $table->uuid('id')->comment('通话ID');
+            $table->uuid('task_id')->comment('外呼任务ID');
             $table->string('number', 20)->comment('电话号码');
 
             $table->unsignedTinyInteger('state')->nullable()
@@ -43,6 +44,8 @@ class CreateOutboundCallRecordsTable extends Migration
 
 
             $table->timestamps();
+
+            $table->primary(['id', 'task_id']);
         });
     }
 

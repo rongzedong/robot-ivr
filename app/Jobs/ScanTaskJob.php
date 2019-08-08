@@ -32,15 +32,17 @@ class ScanTaskJob extends Job
      */
     public function handle(OutboundTaskRepository $repository)
     {
-        $taskIds = $repository->scopeQuery(function ($query) {
-            return $query->where('start', 1);
-        })->pluck('uuid');
+        $tasks = $repository->get(['uuid', 'start']);
 
-        $taskIds->each(function ($task_id) {
-            //失败自动重呼
-            Artisan::call('auto-dialer:recycle', [
-                'task_id' => $task_id
-            ]);
+        $tasks->each(function ($task) {
+            if ($task->start) {
+                //失败自动重呼
+                Artisan::call('auto-dialer:recycle', [
+                    'task_id' => $task->uuid
+                ]);
+            }
+            //生成外呼记录
+            dispatch(new BuildOutboundRecordJob($task->uuid));
         });
     }
 }
