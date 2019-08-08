@@ -32,14 +32,7 @@ class OutboundCallRecordRepository extends BaseRepository
         })->firstOrNew();
 
         if (empty($record->recordfile)) {
-            $number = OutboundNumber::query()->where('callid', $id)->first();
-
-            if ($number) {
-                $data = $number->toArray();
-                $data['id'] = $data['callid'];
-                unset($data['callid']);
-                $record->fill($data)->save();
-            }
+            abort(404, '语音文件丢失');
         }
         return $record->recordfile;
     }
