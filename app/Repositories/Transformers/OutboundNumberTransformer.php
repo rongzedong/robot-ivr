@@ -35,7 +35,7 @@ class OutboundNumberTransformer extends TransformerAbstract
                 'bridge_calldate',
                 'bridge_answerdate',
             ]) + [
-                'recordfile' => URL::asset('/v1/outbound/' . OutboundNumber::getTableIdentification() . '/' . $number->getKey() . '/voice_playing'),
+                'recordfile' => URL::asset('/v1/outbound/' . OutboundNumber::getTableIdentification() . '/' . $number->getKey() . '/voice_playing.wav'),
             ];
     }
 }
