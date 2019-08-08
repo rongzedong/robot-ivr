@@ -80,11 +80,12 @@ class OutboundNumber extends Controller
     }
 
     /**
+     * 强行删除
      * @param $task_id
      * @param $id
      */
     public function destroy($task_id, $id)
     {
-        $this->outboundNumberRepository->setTask($task_id)->delete($id);
+        $this->outboundNumberRepository->setTask($task_id)->find($id)->forceDelete();
     }
 }
