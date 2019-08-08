@@ -73,6 +73,7 @@ class OutboundNumber extends Model implements Presentable
         //更新当前号码状态
         $this->recordfile = '';
         $this->hangupcause = null;
+        $this->deleted_at = null;
         $this->fill([
             'status' => null,
             'description' => null,
@@ -183,6 +184,15 @@ class OutboundNumber extends Model implements Presentable
             ->whereNull('status')
             ->where('bill', 0)
             ->where('duration', '<', 10000);
+    }
+
+    /**
+     * 作用域 呼叫成功的
+     * @inheritdoc
+     */
+    public function scopeCallSuccess($query)
+    {
+        return $query->where('state', 10)->where('bill', '>', 0);
     }
 
 }

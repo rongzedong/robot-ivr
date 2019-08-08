@@ -41,7 +41,7 @@ class BuildOutboundRecordJob extends Job
     {
 
         $repository->setTask($this->taskId)->skipPresenter()->scopeQuery(function ($model) {
-            return $model->where('state', 10); //呼叫完成
+            return $model->callSuccess(); //呼叫成功
         })->get()->each(function (OutboundNumber $data) use ($callRecordRepository) {
             $callRecordRepository->updateOrCreate(['id' => $data['callid'], 'task_id' => $this->taskId], $data->setHidden(['id', 'callid'])->toArray());
             //软删除外呼号码(防止重复扫描生成记录)

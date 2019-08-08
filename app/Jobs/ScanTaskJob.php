@@ -35,14 +35,15 @@ class ScanTaskJob extends Job
         $tasks = $repository->get(['uuid', 'start']);
 
         $tasks->each(function ($task) {
+            //生成外呼记录
+            dispatch(new BuildOutboundRecordJob($task->uuid));
+
             if ($task->start) {
                 //失败自动重呼
                 Artisan::call('auto-dialer:recycle', [
                     'task_id' => $task->uuid
                 ]);
             }
-            //生成外呼记录
-            dispatch(new BuildOutboundRecordJob($task->uuid));
         });
     }
 }
