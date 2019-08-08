@@ -40,7 +40,7 @@ class OutboundNumber extends Controller
     public function callStarted($task_id)
     {
         return $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function ($model) {
-            return $model->whereNotNull('state');
+            return $model->whereNotNull('state')->withTrashed();
         })->orderBy('calldate', 'desc')->get();
 
     }
