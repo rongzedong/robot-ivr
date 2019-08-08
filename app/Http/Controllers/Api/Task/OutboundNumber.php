@@ -74,7 +74,9 @@ class OutboundNumber extends Controller
      */
     public function update(Request $request, $task_id, $id)
     {
-        $this->outboundNumberRepository->setTask($task_id)->update($request->all(), $id);
+        $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function ($model) {
+            return $model->withTrashed();
+        })->update($request->all() + ['deleted_at' => null], $id);
     }
 
     /**
