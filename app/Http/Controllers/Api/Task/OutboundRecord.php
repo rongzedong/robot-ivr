@@ -27,13 +27,13 @@ class OutboundRecord extends Controller
         $this->repository = $repository;
     }
 
-    public function index()
+    public function index($task_id)
     {
-        return $this->repository->get();
+        return $this->repository->findWhere(['task_id' => $task_id]);
     }
 
-    public function show($id)
+    public function show($task_id, $id)
     {
-        return $this->repository->find($id);
+        return $this->repository->findWhere(['id' => $id, 'task_id' => $task_id]);
     }
 }
