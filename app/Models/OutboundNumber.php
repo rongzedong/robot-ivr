@@ -136,7 +136,7 @@ class OutboundNumber extends Model implements Presentable
             $table->unsignedInteger('time')->default(0)->comment('拨打次数');
             $table->timestamps();
             $table->softDeletes();
-            $table->primary('id');
+            $table->primary('id', 'index_id_primary');
             //号码回收扫描索引
             $table->index(['state', 'status', 'bill', 'duration'], 'state_status_bill_duration_index');
         });
