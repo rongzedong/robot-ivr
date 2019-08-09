@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api\Task;
 
 
 use App\Http\Controllers\Api\Controller;
+use App\Models\TimeGroup;
 use App\Repositories\Eloquent\OutboundTaskRepository;
 use Illuminate\Http\Request;
 
@@ -40,9 +41,8 @@ class Outbound extends Controller
 
         if (is_null($task)) {
             $this->outboundTask->create($request->all());
-            info('create task', [
-                'data' => $request->all()
-            ]);
+            $this->outboundTask->updateOrCreateTimeGroup($request->input('time_group'));
+            $this->outboundTask->updateOrCreateTimeRanges($request->input('time_ranges'));
         }
 
     }
@@ -55,10 +55,8 @@ class Outbound extends Controller
     public function update(Request $request, $id)
     {
         $this->outboundTask->update($request->all(), $id);
-        info('update task', [
-            'data' => $request->all(),
-            'id' => $id,
-        ]);
+        $this->outboundTask->updateOrCreateTimeGroup($request->input('time_group'));
+        $this->outboundTask->updateOrCreateTimeRanges($request->input('time_ranges'));
     }
 
     /**

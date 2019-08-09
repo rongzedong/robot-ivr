@@ -73,7 +73,6 @@ class CreateAutodialerTable extends Migration
             $table->uuid('uuid');
             $table->string('name');
             $table->string('domain');
-            $table->uuid('user_id')->comment('用户id');
             $table->timestamps();
         });
 

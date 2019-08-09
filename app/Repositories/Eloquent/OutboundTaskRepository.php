@@ -2,6 +2,9 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\TimeGroup;
+use App\Models\TimeRange;
+use Illuminate\Support\Arr;
 use Prettus\Repository\Eloquent\BaseRepository;
 use App\Models\OutboundTask;
 
@@ -31,6 +34,19 @@ class OutboundTaskRepository extends BaseRepository
     public function stop($task_id)
     {
         $this->find($task_id)->stop();
+    }
+
+    public function updateOrCreateTimeGroup($group)
+    {
+        TimeGroup::updateOrCreate(['uuid' => Arr::get($group, 'uuid')], $group);
+    }
+
+    public function updateOrCreateTimeRanges($ranges)
+    {
+        foreach ($ranges as $range) {
+            TimeRange::updateOrCreate(['uuid' => Arr::get($range, 'uuid')], $range);
+        }
+
     }
 
 
