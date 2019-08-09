@@ -76,7 +76,7 @@ class OutboundNumber extends Controller
     {
         $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function ($model) {
             return $model->withTrashed();
-        })->update($request->all() + ['deleted_at' => null], $id);
+        })->update($request->all(), $id);
     }
 
     /**
@@ -87,5 +87,17 @@ class OutboundNumber extends Controller
     public function destroy($task_id, $id)
     {
         $this->outboundNumberRepository->setTask($task_id)->find($id)->forceDelete();
+    }
+
+    /**
+     * 重置呼叫状态
+     * @param $task_id
+     * @param $id
+     */
+    public function resetCall($task_id, $id)
+    {
+        $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function ($model) {
+            return $model->withTrashed();
+        })->find($id)->resetCall();
     }
 }

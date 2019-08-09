@@ -40,6 +40,9 @@ class Outbound extends Controller
 
         if (is_null($task)) {
             $this->outboundTask->create($request->all());
+            info('create task', [
+                'data' => $request->all()
+            ]);
         }
 
     }
@@ -52,6 +55,10 @@ class Outbound extends Controller
     public function update(Request $request, $id)
     {
         $this->outboundTask->update($request->all(), $id);
+        info('update task', [
+            'data' => $request->all(),
+            'id' => $id,
+        ]);
     }
 
     /**

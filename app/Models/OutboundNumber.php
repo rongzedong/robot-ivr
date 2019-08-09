@@ -73,7 +73,7 @@ class OutboundNumber extends Model implements Presentable
         //更新当前号码状态
         $this->recordfile = '';
         $this->hangupcause = null;
-        $this->deleted_at = null;
+        $this->{$this->getDeletedAtColumn()} = null;
         $this->fill([
             'status' => null,
             'description' => null,

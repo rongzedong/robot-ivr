@@ -28,6 +28,8 @@ $router->post('task/{task_id}/outbound/number', 'Api\Task\OutboundNumber@store')
 $router->put('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@update');
 
 $router->delete('task/{task_id}/outbound/number/{id}', 'Api\Task\OutboundNumber@destroy');
+//重置呼叫状态
+$router->put('task/{task_id}/outbound/number/{id}/reset_call', 'Api\Task\OutboundNumber@resetCall');
 
 /**
  * 外呼通话记录
