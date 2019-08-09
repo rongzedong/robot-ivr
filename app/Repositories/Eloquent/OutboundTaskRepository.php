@@ -38,14 +38,20 @@ class OutboundTaskRepository extends BaseRepository
 
     public function updateOrCreateTimeGroup($group)
     {
-        TimeGroup::updateOrCreate(['uuid' => Arr::get($group, 'uuid')], $group);
+        if ($group) {
+            TimeGroup::updateOrCreate(['uuid' => Arr::get($group, 'uuid')], $group);
+        }
+
     }
 
     public function updateOrCreateTimeRanges($ranges)
     {
-        foreach ($ranges as $range) {
-            TimeRange::updateOrCreate(['uuid' => Arr::get($range, 'uuid')], $range);
+        if ($ranges) {
+            foreach ($ranges as $range) {
+                TimeRange::updateOrCreate(['uuid' => Arr::get($range, 'uuid')], $range);
+            }
         }
+
 
     }
 

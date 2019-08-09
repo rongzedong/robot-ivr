@@ -57,6 +57,12 @@ class Outbound extends Controller
         $this->outboundTask->update($request->all(), $id);
         $this->outboundTask->updateOrCreateTimeGroup($request->input('time_group'));
         $this->outboundTask->updateOrCreateTimeRanges($request->input('time_ranges'));
+
+        info('update task', [
+            'all' => $request->all(),
+            'time_group' => $request->input('time_group'),
+            'time_ranges' => $request->input('time_ranges'),
+        ]);
     }
 
     /**
