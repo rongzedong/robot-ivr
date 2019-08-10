@@ -98,6 +98,6 @@ class OutboundNumber extends Controller
     {
         $this->outboundNumberRepository->setTask($task_id)->scopeQuery(function ($model) {
             return $model->withTrashed();
-        })->find($id)->resetCall();
+        })->skipPresenter()->find($id)->resetCall();
     }
 }
