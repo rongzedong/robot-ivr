@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\OutboundCallRecord;
 use App\Models\OutboundNumber;
 use App\Models\OutboundTask;
+use App\Observes\OutboundCallRecordObserve;
 use App\Observes\OutboundNumberObserve;
 use App\Observes\OutboundTaskObserve;
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
@@ -33,5 +35,7 @@ class EventServiceProvider extends ServiceProvider
     {
         OutboundTask::observe(OutboundTaskObserve::class);
         OutboundNumber::observe(OutboundNumberObserve::class);
+
+        OutboundCallRecord::observe(OutboundCallRecordObserve::class);
     }
 }
