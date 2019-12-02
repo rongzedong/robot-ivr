@@ -5,6 +5,8 @@
 
 # 部署说明
 
+0. 运行环境： 是否必须为linux ？ 需要的其他条件？ 配置文件？
+
 1. 下载项目代码
     ```bash
     $ git clone git@github.com:xskit/robot-ivr.git
@@ -28,6 +30,7 @@
     IVR_KEY=qL3S06naeik7****
     IVR_SECRET=3al1xUk8AOaZC8twvhZLmF3Wt2BLcKdijtaost*****
     ```
+    这个signup是注册到freeswitch吗？
 
 ​    
 
